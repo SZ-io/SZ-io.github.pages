@@ -23,6 +23,7 @@
         .tab-active { background-color: #0d0d0d; border-top: 1px solid #00ff41; }
         .file-item:hover { background-color: #2a2a2a; cursor: pointer; }
         .file-active { background-color: #37373d; color: #00ff41; }
+        .active-filter { border-color: #00ff41 !important; color: #00ff41 !important; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0d0d0d; }
         ::-webkit-scrollbar-thumb { background: #333; }
@@ -126,23 +127,30 @@
                             </div>
 
                             <div class="mt-12">
-                                <h2 class="text-xl font-bold mb-4 text-purple-400">import {</h2>
-                                <div class="ml-8 space-y-2 text-lg">
-                                    <div><span class="text-blue-400">languages:</span> [<span class="text-yellow-400">"Python"</span>, <span class="text-yellow-400">"C"</span>],</div>
-                                    <div><span class="text-blue-400">libraries:</span> [<span class="text-yellow-400">"NumPy"</span>, <span class="text-yellow-400">"Matplotlib"</span>],</div>
-                                    <div><span class="text-blue-400">tools:</span> [<span class="text-yellow-400">"Git"</span>, <span class="text-yellow-400">"Linux"</span>]</div>
-                                </div>
-                                <h2 class="text-xl font-bold mt-2 text-purple-400">}</h2>
+                                <h2 class="text-xl font-bold mb-4 text-purple-400">Technical Interests & Learning:</h2>
+                                <p class="text-lg text-slate-300 leading-relaxed">
+                                    Active learner in C and Python development. Building foundations in C++ (OOP & Classes). 
+                                    Experienced with Linux environments, TCP/IP Sockets, and implementing Machine Learning models from scratch.
+                                </p>
                             </div>
                         </section>
 
                         <!-- Projects Section -->
-                        <section id="content-projects" class="content-section hidden">
-                            <h2 class="text-2xl font-bold mb-8 accent-color">class Projects:</h2>
+                        <section id="content-projects" class="content-section hidden overflow-y-auto">
+                            <h2 class="text-2xl font-bold mb-6 accent-color">class Projects:</h2>
                             
-                            <div class="space-y-12 ml-4 border-l-2 border-gray-800 pl-8">
+                            <!-- Filter UI -->
+                            <div class="flex flex-wrap gap-2 mb-8 ml-4">
+                                <button onclick="filterProjects('All')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn active-filter" data-filter="All">All</button>
+                                <button onclick="filterProjects('C')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn" data-filter="C">C</button>
+                                <button onclick="filterProjects('Python')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn" data-filter="Python">Python</button>
+                                <button onclick="filterProjects('Networking')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn" data-filter="Networking">Networking</button>
+                                <button onclick="filterProjects('Linux')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn" data-filter="Linux">Linux</button>
+                            </div>
+
+                            <div id="projects-list" class="space-y-12 ml-4 border-l-2 border-gray-800 pl-8 pb-8">
                                 <!-- Project 1 -->
-                                <div>
+                                <div class="project-card" data-tags="Python">
                                     <h3 class="text-xl font-bold text-yellow-400 mb-2">
                                         <a href="https://github.com/SZ-io/mnist-numpy-neural-network" target="_blank" class="hover:underline">def mnist_neural_network(self):</a>
                                     </h3>
@@ -150,21 +158,36 @@
                                         Implementation of a digit recognition neural network from scratch using Python and NumPy.
                                         Focused on understanding backpropagation and gradient descent without external ML libraries.
                                     </p>
-                                    <div class="flex space-x-4">
+                                    <div class="flex flex-wrap gap-4">
                                         <span class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-xs border border-yellow-700">Python</span>
                                         <span class="px-3 py-1 bg-blue-900/30 text-blue-400 text-xs border border-blue-700">NumPy</span>
                                     </div>
                                 </div>
 
-                                <!-- Project 2 -->
-                                <div>
+                                <!-- Project 2: TCP Multi-User Chat -->
+                                <div class="project-card" data-tags="Python,Networking">
+                                    <h3 class="text-xl font-bold text-yellow-400 mb-2">
+                                        <a href="https://github.com/sz-io/TCP-Based-Multi-User-Chat-Project" target="_blank" class="hover:underline">def tcp_multi_user_chat(self):</a>
+                                    </h3>
+                                    <p class="text-gray-400 mb-4">
+                                        A project developed to explore Python Sockets and Threading. Implements a real-time chat with a CustomTkinter GUI.
+                                    </p>
+                                    <div class="flex flex-wrap gap-4">
+                                        <span class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-xs border border-yellow-700">Python</span>
+                                        <span class="px-3 py-1 bg-purple-900/40 text-purple-400 text-xs border border-purple-800/50">Networking</span>
+                                        <span class="px-3 py-1 rounded text-xs bg-cyan-900/30 text-cyan-400 border border-cyan-800/50">GUI</span>
+                                    </div>
+                                </div>
+
+                                <!-- Project 3 -->
+                                <div class="project-card" data-tags="C,Linux">
                                     <h3 class="text-xl font-bold text-yellow-400 mb-2">
                                         <a href="https://github.com/SZ-io/Linux-Shell-Implementation" target="_blank" class="hover:underline">def linux_shell(self):</a>
                                     </h3>
                                     <p class="text-gray-400 mb-4">
                                         A functional command-line interpreter written in C. Implements process management, system calls (fork, exec), and PATH resolution to execute system commands.
                                     </p>
-                                    <div class="flex space-x-4">
+                                    <div class="flex flex-wrap gap-4">
                                         <span class="px-3 py-1 bg-green-900/30 text-green-400 text-xs border border-green-700">C</span>
                                         <span class="px-3 py-1 bg-black text-white text-xs border border-gray-700">Linux</span>
                                     </div>
@@ -264,6 +287,27 @@
             const cursor = document.querySelector('.cursor-blink');
             if (cursor) cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
         }, 600);
+
+        function filterProjects(tag) {
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === tag) {
+                    btn.classList.add('active-filter');
+                } else {
+                    btn.classList.remove('active-filter');
+                }
+            });
+
+            // Filter projects
+            document.querySelectorAll('.project-card').forEach(card => {
+                const tags = card.getAttribute('data-tags').split(',');
+                if (tag === 'All' || tags.includes(tag)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
     </script>
 </body>
 </html>

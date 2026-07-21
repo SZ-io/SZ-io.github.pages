@@ -5,300 +5,256 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matan Elgrissi | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: #0d0d0d;
-            color: #e0e0e0;
-        }
-        .accent-color { color: #00ff41; }
-        .accent-bg { background-color: #00ff41; }
-        .accent-border { border-color: #00ff41; }
-        .sidebar-bg { background-color: #151515; }
-        .activity-bar-bg { background-color: #0a0a0a; }
-        .tab-active { background-color: #0d0d0d; border-top: 1px solid #00ff41; }
-        .file-item:hover { background-color: #2a2a2a; cursor: pointer; }
-        .file-active { background-color: #37373d; color: #00ff41; }
-        .active-filter { border-color: #00ff41 !important; color: #00ff41 !important; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0d0d0d; }
-        ::-webkit-scrollbar-thumb { background: #333; }
-        ::-webkit-scrollbar-thumb:hover { background: #444; }
+        body { font-family: 'Inter', sans-serif; }
+        .nav-active { background-color: #000; color: #fff !important; }
+        .filter-active { background-color: #000; color: #fff !important; border-color: #000 !important; }
     </style>
 </head>
-<body class="h-screen flex flex-col overflow-hidden">
+<body class="bg-[#f4f4f6] text-black min-h-screen flex flex-col selection:bg-[#ccff00]">
 
-    <!-- Header / Title Bar -->
-    <header class="h-8 flex items-center justify-between px-4 text-xs sidebar-bg border-b border-black select-none relative z-50">
-        <div class="flex items-center space-x-4">
-            <button id="mobile-toggle" class="sm:hidden text-gray-400 hover:text-white">
-                <i data-lucide="menu" class="w-4 h-4"></i>
+    <!-- Floating Navbar -->
+    <header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-4xl">
+        <nav class="bg-white/90 backdrop-blur-md rounded-full px-6 py-2.5 border border-slate-200 shadow-md flex items-center justify-between">
+            <a href="#" onclick="switchTab('home')" class="font-black text-lg tracking-tighter text-black">MATAN.</a>
+            
+            <div class="flex items-center space-x-2 text-sm font-semibold text-slate-600">
+                <button id="nav-home" onclick="switchTab('home')" class="px-3 py-1.5 rounded-full transition-all nav-active">Home</button>
+                <button id="nav-projects" onclick="switchTab('projects')" class="px-3 py-1.5 rounded-full transition-all hover:text-black">Projects</button>
+                <button id="nav-stack" onclick="switchTab('stack')" class="px-3 py-1.5 rounded-full transition-all hover:text-black">Stack</button>
+                <button id="nav-contact" onclick="switchTab('contact')" class="px-3 py-1.5 rounded-full transition-all hover:text-black">Contact</button>
+            </div>
+
+            <button onclick="switchTab('contact')" class="bg-[#ccff00] text-black text-xs sm:text-sm font-bold px-4 py-2 rounded-full hover:bg-[#b8e600] transition-colors">
+                Get in Touch
             </button>
-            <span class="text-gray-300 font-bold">Matan Elgrissi</span>
-        </div>
-        <div class="flex space-x-2">
-            <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-            <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-            <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-        </div>
+        </nav>
     </header>
 
-    <div class="flex flex-1 overflow-hidden relative">
-        <!-- Activity Bar -->
-        <aside class="w-12 activity-bar-bg flex flex-col items-center py-4 space-y-4 border-r border-black flex-shrink-0 z-50">
-            <i data-lucide="files" class="w-6 h-6 text-gray-400 hover:text-white cursor-pointer"></i>
-            <i data-lucide="search" class="w-6 h-6 text-gray-600 hover:text-white cursor-pointer"></i>
-            <i data-lucide="git-branch" class="w-6 h-6 text-gray-600 hover:text-white cursor-pointer"></i>
-            <i data-lucide="terminal" class="w-6 h-6 text-gray-600 hover:text-white cursor-pointer"></i>
-        </aside>
+    <!-- Main Content Area -->
+    <main class="flex-1 pt-32 pb-16 px-6 max-w-5xl mx-auto w-full">
 
-        <!-- Mobile Overlay -->
-        <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden sm:hidden"></div>
-
-        <!-- Sidebar / Explorer -->
-        <aside id="sidebar" class="fixed sm:relative w-64 sidebar-bg border-r border-black flex flex-col flex-shrink-0 h-full z-50 transition-transform duration-300 transform -translate-x-full sm:translate-x-0">
-            <div class="p-3 text-xs uppercase tracking-widest text-gray-500 flex items-center justify-between">
-                <span>Explorer</span>
-                <i data-lucide="more-horizontal" class="w-4 h-4"></i>
+        <!-- HOME TAB -->
+        <section id="sec-home" class="tab-content transition-opacity duration-300">
+            <div class="mb-12">
+                <p class="text-xs font-bold tracking-widest text-slate-400 uppercase mb-3">01 / PORTFOLIO</p>
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none mb-6">
+                    MATAN ELGRISSI
+                </h1>
+                <p class="text-base sm:text-lg font-bold text-slate-500 uppercase tracking-wide">
+                    Computer Science Student & Developer
+                </p>
             </div>
-            <div class="flex flex-col">
-                <div class="flex items-center px-2 py-1 text-xs font-bold text-gray-400 bg-black/20">
-                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1"></i>
-                    PORTFOLIO
-                </div>
-                <div id="nav-about" class="file-item file-active flex items-center px-6 py-1 text-sm" onclick="switchTab('about')">
-                    <i data-lucide="file-text" class="w-4 h-4 mr-2 text-blue-400"></i>
-                    about_me.txt
-                </div>
-                <div id="nav-projects" class="file-item flex items-center px-6 py-1 text-sm" onclick="switchTab('projects')">
-                    <i data-lucide="code" class="w-4 h-4 mr-2 text-yellow-400"></i>
-                    projects.py
-                </div>
-                <div id="nav-contact" class="file-item flex items-center px-6 py-1 text-sm" onclick="switchTab('contact')">
-                    <i data-lucide="terminal" class="w-4 h-4 mr-2 text-green-400"></i>
-                    contact.sh
-                </div>
-            </div>
-        </aside>
 
-        <!-- Editor Area -->
-        <main class="flex-1 flex flex-col bg-[#0d0d0d] overflow-hidden">
-            <!-- Tabs -->
-            <div class="flex bg-black border-b border-black text-xs select-none h-9">
-                <div id="tab-about" class="tab-active px-4 flex items-center border-r border-black min-w-[120px] justify-between cursor-pointer" onclick="switchTab('about')">
-                    <span class="flex items-center"><i data-lucide="file-text" class="w-3 h-3 mr-2 text-blue-400"></i> about_me.txt</span>
-                    <i data-lucide="x" class="w-3 h-3 ml-2 hover:bg-gray-700 rounded p-0.5"></i>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 py-8 border-y border-slate-200 mb-12">
+                <div class="md:col-span-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">ABOUT ME</span>
                 </div>
-                <div id="tab-projects" class="px-4 flex items-center border-r border-black min-w-[120px] justify-between cursor-pointer sidebar-bg text-gray-500" onclick="switchTab('projects')">
-                    <span class="flex items-center"><i data-lucide="code" class="w-3 h-3 mr-2 text-yellow-400"></i> projects.py</span>
-                    <i data-lucide="x" class="w-3 h-3 ml-2 hover:bg-gray-700 rounded p-0.5"></i>
-                </div>
-                <div id="tab-contact" class="px-4 flex items-center border-r border-black min-w-[120px] justify-between cursor-pointer sidebar-bg text-gray-500" onclick="switchTab('contact')">
-                    <span class="flex items-center"><i data-lucide="terminal" class="w-3 h-3 mr-2 text-green-400"></i> contact.sh</span>
-                    <i data-lucide="x" class="w-3 h-3 ml-2 hover:bg-gray-700 rounded p-0.5"></i>
+                <div class="md:col-span-8">
+                    <p class="text-lg sm:text-xl font-medium text-slate-800 leading-relaxed">
+                        Computer Science student with a strong interest in Machine Learning and Computer Vision. I focus on the practical implementation of established algorithms and neural networks, bridging the gap between mathematical theory and working code.
+                    </p>
                 </div>
             </div>
 
-            <!-- Editor Content -->
-            <div class="flex-1 overflow-auto p-8">
-                <!-- Line Numbers -->
-                <div class="flex">
-                    <div class="w-12 text-right pr-6 text-gray-600 select-none text-sm leading-relaxed hidden sm:block">
-                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30
-                    </div>
-
-                    <!-- Content Sections -->
-                    <div class="flex-1">
-                        <!-- About Section -->
-                        <section id="content-about" class="content-section">
-                            <h1 class="text-3xl font-bold mb-6">
-                                <span class="text-purple-400">const</span> <span class="text-blue-400">developer</span> = <span class="accent-color">"Matan Elgrissi"</span>;
-                            </h1>
-                            <div class="text-base sm:text-lg text-slate-400 mb-8 leading-relaxed italic break-words">
-                                /*<br><br>
-                                 * Computer Science student with a strong interest in Machine Learning and Computer Vision.<br>
-                                 * I focus on the practical implementation of established algorithms and neural networks,<br>
-                                 * bridging the gap between mathematical theory and working code.<br><br>
-                                 */
-                            </div>
-
-                            <div class="mt-12">
-                                <h2 class="text-xl font-bold mb-4 text-purple-400">Technical Interests & Learning:</h2>
-                                <p class="text-lg text-slate-300 leading-relaxed">
-                                    Active learner in C and Python development. Building foundations in C++ (OOP & Classes). 
-                                    Experienced with Linux environments, TCP/IP Sockets, and implementing Machine Learning models from scratch.
-                                </p>
-                            </div>
-                        </section>
-
-                        <!-- Projects Section -->
-                        <section id="content-projects" class="content-section hidden overflow-y-auto">
-                            <h2 class="text-2xl font-bold mb-6 accent-color">class Projects:</h2>
-                            
-                            <!-- Filter UI -->
-                            <div class="flex flex-wrap gap-2 mb-8 ml-4">
-                                <button onclick="filterProjects('All')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn active-filter" data-filter="All">All</button>
-                                <button onclick="filterProjects('C')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn" data-filter="C">C</button>
-                                <button onclick="filterProjects('Python')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn" data-filter="Python">Python</button>
-                                <button onclick="filterProjects('Networking')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn" data-filter="Networking">Networking</button>
-                                <button onclick="filterProjects('Linux')" class="px-3 py-1 text-xs border border-gray-600 hover:border-accent-color transition-colors rounded filter-btn" data-filter="Linux">Linux</button>
-                            </div>
-
-                            <div id="projects-list" class="space-y-12 ml-4 border-l-2 border-gray-800 pl-8 pb-8">
-                                <!-- Project 1 -->
-                                <div class="project-card" data-tags="Python">
-                                    <h3 class="text-xl font-bold text-yellow-400 mb-2">
-                                        <a href="https://github.com/SZ-io/mnist-numpy-neural-network" target="_blank" class="hover:underline">def mnist_neural_network(self):</a>
-                                    </h3>
-                                    <p class="text-gray-400 mb-4">
-                                        Implementation of a digit recognition neural network from scratch using Python and NumPy.
-                                        Focused on understanding backpropagation and gradient descent without external ML libraries.
-                                    </p>
-                                    <div class="flex flex-wrap gap-4">
-                                        <span class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-xs border border-yellow-700">Python</span>
-                                        <span class="px-3 py-1 bg-blue-900/30 text-blue-400 text-xs border border-blue-700">NumPy</span>
-                                    </div>
-                                </div>
-
-                                <!-- Project 2: TCP Multi-User Chat -->
-                                <div class="project-card" data-tags="Python,Networking">
-                                    <h3 class="text-xl font-bold text-yellow-400 mb-2">
-                                        <a href="https://github.com/sz-io/TCP-Based-Multi-User-Chat-Project" target="_blank" class="hover:underline">def tcp_multi_user_chat(self):</a>
-                                    </h3>
-                                    <p class="text-gray-400 mb-4">
-                                        A project developed to explore Python Sockets and Threading. Implements a real-time chat with a CustomTkinter GUI.
-                                    </p>
-                                    <div class="flex flex-wrap gap-4">
-                                        <span class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-xs border border-yellow-700">Python</span>
-                                        <span class="px-3 py-1 bg-purple-900/40 text-purple-400 text-xs border border-purple-800/50">Networking</span>
-                                        <span class="px-3 py-1 rounded text-xs bg-cyan-900/30 text-cyan-400 border border-cyan-800/50">GUI</span>
-                                    </div>
-                                </div>
-
-                                <!-- Project 3 -->
-                                <div class="project-card" data-tags="C,Linux">
-                                    <h3 class="text-xl font-bold text-yellow-400 mb-2">
-                                        <a href="https://github.com/SZ-io/Linux-Shell-Implementation" target="_blank" class="hover:underline">def linux_shell(self):</a>
-                                    </h3>
-                                    <p class="text-gray-400 mb-4">
-                                        A functional command-line interpreter written in C. Implements process management, system calls (fork, exec), and PATH resolution to execute system commands.
-                                    </p>
-                                    <div class="flex flex-wrap gap-4">
-                                        <span class="px-3 py-1 bg-green-900/30 text-green-400 text-xs border border-green-700">C</span>
-                                        <span class="px-3 py-1 bg-black text-white text-xs border border-gray-700">Linux</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Contact Section -->
-                        <section id="content-contact" class="content-section hidden">
-                            <h2 class="text-2xl font-bold mb-8 text-green-400">#!/bin/bash</h2>
-                            <div class="space-y-6 text-lg">
-                                <div class="flex items-center space-x-4">
-                                    <span class="text-gray-600">echo</span> <span class="text-yellow-400">"Email:"</span> 
-                                    <a href="mailto:elgrissi2000@gmail.com" class="hover:underline accent-color">elgrissi2000@gmail.com</a>
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                    <span class="text-gray-600">echo</span> <span class="text-yellow-400">"Github:"</span> 
-                                    <a href="https://github.com/SZ-io" target="_blank" class="hover:underline accent-color">https://github.com/SZ-io</a>
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                    <span class="text-gray-600">echo</span> <span class="text-yellow-400">"LinkedIn:"</span> 
-                                    <a href="https://www.linkedin.com/in/matan-elgrissi-8b07bb346/" target="_blank" class="hover:underline accent-color">https://www.linkedin.com/in/matan-elgrissi-8b07bb346/</a>
-                                </div>
-                                <div class="mt-12 pt-8 border-t border-gray-800">
-                                    <p class="text-gray-600 cursor-blink">_</p>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-xs font-bold text-slate-400">01.</span>
+                    <h3 class="text-base font-black uppercase tracking-tight mt-2 mb-3">Machine Learning</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Building digit recognition NNs & backpropagation algorithms from scratch using Python & NumPy.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-xs font-bold text-slate-400">02.</span>
+                    <h3 class="text-base font-black uppercase tracking-tight mt-2 mb-3">Low-Level Systems</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Developing Linux shell interpreters, process management, and POSIX system calls in C.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-xs font-bold text-slate-400">03.</span>
+                    <h3 class="text-base font-black uppercase tracking-tight mt-2 mb-3">Network Architecture</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Creating real-time TCP socket servers, multi-threaded communication, and CustomTkinter GUIs.</p>
                 </div>
             </div>
 
-            <!-- Footer / Status Bar -->
-            <footer class="h-6 flex items-center justify-between px-3 text-[10px] accent-bg text-black select-none">
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-1 font-bold">
-                        <i data-lucide="git-branch" class="w-3 h-3"></i>
-                        <span>main*</span>
+            <div class="flex justify-start">
+                <button onclick="switchTab('projects')" class="bg-black text-white text-sm font-bold px-6 py-3 rounded-full hover:bg-slate-800 transition-colors flex items-center gap-2">
+                    VIEW PROJECTS <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- PROJECTS TAB -->
+        <section id="sec-projects" class="tab-content hidden transition-opacity duration-300">
+            <div class="mb-8">
+                <p class="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2">02 / SELECTED WORKS</p>
+                <h2 class="text-4xl sm:text-6xl font-black tracking-tighter uppercase mb-6">PROJECTS</h2>
+                
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-2 py-4">
+                    <button onclick="filterProjects('All')" class="filter-btn filter-active px-4 py-1.5 text-xs font-bold uppercase rounded-full border border-slate-300 transition-all" data-tag="All">All</button>
+                    <button onclick="filterProjects('C')" class="filter-btn px-4 py-1.5 text-xs font-bold uppercase rounded-full border border-slate-300 transition-all hover:border-black" data-tag="C">C</button>
+                    <button onclick="filterProjects('Python')" class="filter-btn px-4 py-1.5 text-xs font-bold uppercase rounded-full border border-slate-300 transition-all hover:border-black" data-tag="Python">Python</button>
+                    <button onclick="filterProjects('Networking')" class="filter-btn px-4 py-1.5 text-xs font-bold uppercase rounded-full border border-slate-300 transition-all hover:border-black" data-tag="Networking">Networking</button>
+                    <button onclick="filterProjects('Linux')" class="filter-btn px-4 py-1.5 text-xs font-bold uppercase rounded-full border border-slate-300 transition-all hover:border-black" data-tag="Linux">Linux</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="project-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-black transition-all group flex flex-col justify-between" data-tags="Python">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full uppercase">Python</span>
+                            <a href="https://github.com/SZ-io/mnist-numpy-neural-network" target="_blank" class="p-2 bg-slate-50 rounded-full group-hover:bg-[#ccff00] transition-colors">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 group-hover:underline">MNIST Neural Network</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                            Digit recognition neural network implemented from scratch using Python and NumPy. Focused on understanding backpropagation and gradient descent without external ML frameworks.
+                        </p>
                     </div>
-                    <div class="flex items-center space-x-1">
-                        <i data-lucide="refresh-cw" class="w-3 h-3"></i>
-                        <span>0</span>
+                    <a href="https://github.com/SZ-io/mnist-numpy-neural-network" target="_blank" class="text-xs font-bold uppercase tracking-wider text-black flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        View Repository <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-black transition-all group flex flex-col justify-between" data-tags="Python,Networking">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full uppercase">Python</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full uppercase">Networking</span>
+                            </div>
+                            <a href="https://github.com/sz-io/TCP-Based-Multi-User-Chat-Project" target="_blank" class="p-2 bg-slate-50 rounded-full group-hover:bg-[#ccff00] transition-colors">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 group-hover:underline">TCP Multi-User Chat</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                            Real-time chat application exploring Python Sockets, multi-threading server architecture, and a modern CustomTkinter graphical interface.
+                        </p>
+                    </div>
+                    <a href="https://github.com/sz-io/TCP-Based-Multi-User-Chat-Project" target="_blank" class="text-xs font-bold uppercase tracking-wider text-black flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        View Repository <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-black transition-all group flex flex-col justify-between" data-tags="C,Linux">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full uppercase">C</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full uppercase">Linux</span>
+                            </div>
+                            <a href="https://github.com/SZ-io/Linux-Shell-Implementation" target="_blank" class="p-2 bg-slate-50 rounded-full group-hover:bg-[#ccff00] transition-colors">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 group-hover:underline">Linux Shell Interpreter</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                            Functional command-line interpreter written in C. Implements Unix process management, low-level system calls (fork, exec), and PATH resolution.
+                        </p>
+                    </div>
+                    <a href="https://github.com/SZ-io/Linux-Shell-Implementation" target="_blank" class="text-xs font-bold uppercase tracking-wider text-black flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        View Repository <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- STACK TAB -->
+        <section id="sec-stack" class="tab-content hidden transition-opacity duration-300">
+            <div class="mb-8">
+                <p class="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2">03 / TECHNICAL STACK</p>
+                <h2 class="text-4xl sm:text-6xl font-black tracking-tighter uppercase mb-6">EXPERIENCE</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <h3 class="text-lg font-bold mb-2">Languages</h3>
+                    <p class="text-sm text-slate-600">C, C++, Python, Shell scripting</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <h3 class="text-lg font-bold mb-2">Systems & Networking</h3>
+                    <p class="text-sm text-slate-600">Linux / Unix environments, POSIX System Calls, TCP/IP Sockets, Multi-threading</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <h3 class="text-lg font-bold mb-2">Machine Learning & Theory</h3>
+                    <p class="text-sm text-slate-600">Neural Network Backpropagation, Gradient Descent, NumPy, Machine Learning Foundations</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <h3 class="text-lg font-bold mb-2">Tools & Environments</h3>
+                    <p class="text-sm text-slate-600">Git, VS Code, terminal workflow, uv package manager</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT TAB -->
+        <section id="sec-contact" class="tab-content hidden transition-opacity duration-300">
+            <div class="mb-8">
+                <p class="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2">04 / CONNECT</p>
+                <h2 class="text-4xl sm:text-6xl font-black tracking-tighter uppercase mb-6">GET IN TOUCH</h2>
+            </div>
+
+            <div class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-8">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">EMAIL</p>
+                    <a href="mailto:elgrissi2000@gmail.com" class="text-2xl sm:text-3xl font-black hover:underline">elgrissi2000@gmail.com</a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-slate-100">
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">GITHUB</p>
+                        <a href="https://github.com/SZ-io" target="_blank" class="text-lg font-bold hover:underline flex items-center gap-2">
+                            github.com/SZ-io <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">LINKEDIN</p>
+                        <a href="https://www.linkedin.com/in/matan-elgrissi-8b07bb346/" target="_blank" class="text-lg font-bold hover:underline flex items-center gap-2">
+                            linkedin.com/in/matan-elgrissi <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4 font-bold">
-                    <span>UTF-8</span>
-                    <span>HTML/Tailwind</span>
-                </div>
-            </footer>
-        </main>
-    </div>
+            </div>
+        </section>
+
+    </main>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
-        const mobileToggle = document.getElementById('mobile-toggle');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-        }
-
-        mobileToggle.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
         function switchTab(tabId) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(s => s.classList.add('hidden'));
-            // Remove active classes from sidebar
-            document.querySelectorAll('.file-item').forEach(f => f.classList.remove('file-active'));
-            // Reset tab styling
-            document.querySelectorAll('[id^="tab-"]').forEach(t => {
-                t.classList.remove('tab-active');
-                t.classList.add('sidebar-bg', 'text-gray-500');
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const targetSec = document.getElementById('sec-' + tabId);
+            if (targetSec) targetSec.classList.remove('hidden');
+
+            document.querySelectorAll('nav button[id^="nav-"]').forEach(btn => {
+                btn.classList.remove('nav-active');
+                btn.classList.add('hover:text-black');
             });
 
-            // Show selected section
-            document.getElementById('content-' + tabId).classList.remove('hidden');
-            // Set sidebar active
-            document.getElementById('nav-' + tabId).classList.add('file-active');
-            // Set tab active
-            const activeTab = document.getElementById('tab-' + tabId);
-            activeTab.classList.add('tab-active');
-            activeTab.classList.remove('sidebar-bg', 'text-gray-500');
-
-            // Close sidebar on mobile after selection
-            if (window.innerWidth < 640 && !sidebar.classList.contains('-translate-x-full')) {
-                toggleSidebar();
+            const activeNav = document.getElementById('nav-' + tabId);
+            if (activeNav) {
+                activeNav.classList.add('nav-active');
+                activeNav.classList.remove('hover:text-black');
             }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Blinking cursor simulation
-        setInterval(() => {
-            const cursor = document.querySelector('.cursor-blink');
-            if (cursor) cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-        }, 600);
-
         function filterProjects(tag) {
-            // Update filter buttons
             document.querySelectorAll('.filter-btn').forEach(btn => {
-                if (btn.getAttribute('data-filter') === tag) {
-                    btn.classList.add('active-filter');
+                if (btn.getAttribute('data-tag') === tag) {
+                    btn.classList.add('filter-active');
                 } else {
-                    btn.classList.remove('active-filter');
+                    btn.classList.remove('filter-active');
                 }
             });
 
-            // Filter projects
             document.querySelectorAll('.project-card').forEach(card => {
                 const tags = card.getAttribute('data-tags').split(',');
                 if (tag === 'All' || tags.includes(tag)) {
@@ -308,6 +264,8 @@
                 }
             });
         }
+
+        lucide.createIcons();
     </script>
 </body>
 </html>
